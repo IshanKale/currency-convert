@@ -26,42 +26,53 @@ function App() {
 
 
   return (
-    <>
-      <h1>
-        currency converter
-      </h1>
-      <div>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h1 className="text-2xl font-bold mb-6 text-center">
+          Currency Converter
+        </h1>
         <form onSubmit={(e)=>{
           e.preventDefault()
           convert()
-        }}>
+        }} className="space-y-4">
           <Inputbox 
-          label="from" 
-          amount={amount} 
-          onAmountChange={setAmount} 
-          onCurrencyChange={setFrom} 
-          currencyOptions={options} 
-          selectedCurrency={from} 
-          amountDisable={false} 
-          currencyDisable={false}>
-          </Inputbox>
-          <button onClick={()=>swap()}>
-            swap
+            label="From" 
+            amount={amount} 
+            onAmountChange={setAmount} 
+            onCurrencyChange={setFrom} 
+            currencyOptions={options} 
+            selectedCurrency={from} 
+            amountDisable={false} 
+            currencyDisable={false}
+          />
+          <div className="flex justify-center">
+            <button 
+              type="button" 
+              onClick={swap}
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+            >
+              Swap
+            </button>
+          </div>
+          <Inputbox 
+            label="To" 
+            amount={convertAmt} 
+            onAmountChange={(convertAmt)=>setconvertAmt(convertAmt)} 
+            onCurrencyChange={(currency)=>setto(currency)} 
+            currencyOptions={options} 
+            selectedCurrency={to} 
+            amountDisable={true} 
+            currencyDisable={false}
+          />
+          <button 
+            type="submit" 
+            className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 transition"
+          >
+            Convert
           </button>
-          <Inputbox 
-          label="to" 
-          amount={convertAmt} 
-          onAmountChange={(convertAmt)=>setconvertAmt(convertAmt)} 
-          onCurrencyChange={(currency)=>setto(currency)} 
-          currencyOptions={options} 
-          selectedCurrency={to} 
-          amountDisable={true} 
-          currencyDisable={false}>
-          </Inputbox>
-          <button type="submit">convert</button>
         </form>
       </div>
-    </>
+    </div>
   )
 }
 
